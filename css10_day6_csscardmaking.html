@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: #1e1e1e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+
+        }
+        .card{
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            width: 250px;
+
+        }
+        .card-img{
+            width:100%;
+            height: auto;
+            display: block;
+        }
+        .card-content{
+            padding: 20px;
+        }
+        .tags{
+            margin-bottom: 12px;
+        }
+        .tag{
+            display: inline-block;
+  background-color: #e0e0e0;
+  color: #333;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-right: 8px;
+}
+
+.card-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #212529;
+}
+
+.card-description {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.last{
+    background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.last:hover{
+    align-self: center;
+    background-color: #0056b3;
+}
+.h1{
+    color: beige;
+}
+
+    
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5S3pT_KnBbvjohVs9yCW-6vSStY-4F9bhQQ&s"
+            alt="Lago di Braise" class="card-img">
+        <div class="card-content">
+            <div class="tags">
+                <span class="tag">Nature</span>
+                <span class="tag">Lake</span>
+            </div>
+            <h1>Lago di Braise</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt delectus a atque, sed obcaecati, quidem
+                dicta eligendi perferendis harum, debitis voluptatum quos suscipit placeat magnam.
+            </p>
+            <button class="last">Read More</button>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* the specify selector value is 1 */
+        h1{
+            color: aqua;
+        }
+        /* the specify selector value is 10 */
+        .cpurple{
+            color: purple;
+        }
+        /* the specify selector value is 10 */
+        c.red{
+            color: red;
+        }
+        /* the specify selector value is 1+10=11 */
+        h1.yellow{
+            color: yellow;
+        }
+        /* this is an attributes example, the specify selector value is 10 */
+        [data-x="a"]{
+        background-color:black;
+        }
+        /* this is a specifyicity selector value is 1+10+10+10+10=41 */
+        a.harryclass.rohan-class[href]:hover{
+            color:blueviolet;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div>
+        <h1 class="h1 .cpurple c.red h1.yellow data-x=a">DAY1 CSS SPECIFY SELECTOR</h1>
+</div>
+    </body>
+</html>

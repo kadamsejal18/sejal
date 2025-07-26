@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        </style>
+</head>
+<body>
+    <h1>Day 5: Name Generator</h1>
+    <p>Welcome to the Name Generator! This tool will help you create unique names for       
+    your projects or characters.</p>
+    <div class="container">
+        <p>Enter your criteria below:</p>
+        <input type="text" placeholder="Enter a keyword" />
+        <button>Generate Name</button>
+
+    
+</body>
+<script>
+    let random=math.random();
+    let first,second,third;
+    if(random<0.33){
+        first="crazy";
+    }else if(random<0.66){
+        first="amazing";
+    }else{
+        first="fire";
+    }
+    if(random<0.33){
+        second="engine";
+    }else if(random<0.66){
+        second="foods";
+    }else{
+        second="garments";
+    }
+    if(random<0.33){
+        third="bros";
+    }else if(random<0.66){
+        third="limited";
+    }else{
+        third="hub";
+    }
+    document.querySelector('button').addEventListener('click', function() {
+        const userInput = document.querySelector('input').value;
+        if (userInput) {
+            const name = `${first} ${second} ${third}`;
+            alert(`Your generated name is: ${userInput} ${name}`);
+        } else {
+            alert('Please enter a keyword!');
+        }
+    });
+    /*const k1 =  ["crazy","amazing","fire"];
+    const k2 =["engine","foods","garments"];
+    const k3 = ["bros","limited","hub"];  
+    document.querySelector('button').addEventListener('click', function() {
+        const userInput = document.querySelector('input').value;
+        if (userInput) {
+            const random1 = Math.floor(Math.random() * k1.length);
+            const random2 = Math.floor(Math.random() * k2.length);
+            const random3 = Math.floor(Math.random() * k3.length);
+            const name = `${k1[random1]} ${k2[random2]} ${k3[random3]}`;
+            alert(`Your generated name is: ${userInput} ${name}`);
+        } else {
+            alert('Please enter a keyword!');
+        }
+    });*/
+    </script>
+</html>

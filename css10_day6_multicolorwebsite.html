@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            background-color: blanchedalmond;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+        }
+        :root{
+            --color:rgb(242, 76, 203);
+            --second:rgb(254, 254, 159);
+            --defpad:16px;
+
+        }
+        .nav{
+            border: 2px solid var(--color);
+            border-radius: 15px;
+            padding:12px;
+            cursor: all-scroll;
+
+        }
+        @media only screen and(max-width:455px){
+        .body{
+            background-color: var(--color);
+        }}
+        ul{
+            display: flex;
+        }
+        ul li{
+            list-style: none;
+            padding: var(--defpad);
+        }
+        p{
+            border-radius: 34px;
+            background-color:var(--color);
+            border: 2px solid;
+            font-size: 15px;
+            padding: 32px;
+        }
+        button{
+            background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+  padding: 10px 16px;
+        }
+        .button:hover{
+            align-self: center;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <ul>
+        <li>HOME</li>
+        <li>ABOUT US </li>
+        <li>CONTACT US</li>
+        <li>HELP</li>
+        </ul>
+    </div>
+    <h1>welcome to website </h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aspernatur, pariatur consectetur dolores veniam animi optio distinctio quo, ipsam cumque impedit. Eos molestiae vel dicta fugiat iste minima eum illum cumque ad modi, ipsum possimus mollitia porro rerum soluta incidunt. Cupiditate tempora magni tempore recusandae?</p>
+<button>READ MORE</button>
+</body>
+</html>

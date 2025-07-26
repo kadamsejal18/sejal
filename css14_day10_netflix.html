@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>netfix</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Martel+Sans:wght@600&family=Poppins:wght@300;400;700&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        .navbar {
+            background-size: cover;
+            background-position: center center;
+            background-size: max(1200px, 100vw);
+            background-repeat: no-repeat;
+            height: 644px;
+            position: relative;
+        }
+
+        .nav {
+            max-width: 60vw;
+            justify-content: space-between;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            height: 100px;
+        }
+
+        .nav img {
+            color: red;
+            width: 130px;
+            position: relative;
+        }
+
+        .btn,
+        .btn-red {
+            padding: 3px 8px;
+            font-weight: 400;
+            color: white;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            border: 1px solid white;
+            cursor: pointer;
+            padding: 3px 24px;
+            font-size: 20px;
+            border-radius: 4px;
+            font-weight: 400;
+            margin-left: 10px;
+        }
+
+        .btn-red {
+            background-color: red;
+            border: none;
+        }
+
+        .hero {
+            font-family: 'Martel Sans', sans-serif;
+            height: calc(100% - 100px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            position: relative;
+            gap: 23px;
+            padding: 0 30px;
+        }
+        .hero,.first h1{
+            font-size: 48px;
+            font-weight: 400;
+        }
+
+        .hero> :nth-child(1) {
+            font-family: 'Poppins', sans-serif;
+            font-weight: bolder;
+            font-size: 48px;
+            text-align: center;
+        }
+
+        .hero> :nth-child(2) {
+            font-weight: 400;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .hero> :nth-child(3) {
+            font-weight: 400;
+            font-size: 20px;
+            text-align: center;
+        }
+        .hero-buttons{
+            display: flex;
+            font-size: 18px;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .main input {
+    padding: 7px 101px 8px 14px;
+    color: white;
+    font-size: 12px;
+    border-radius: 4px;
+    background-color: rgba(23, 23, 23, 0.7);
+    border: 1px solid rgba(246, 238, 238, 0.5);
+}
+
+        .hero-buttons input {
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            min-width: 220px;
+        }
+        .separation {
+    height: 8px;
+    background-color: #222;
+    margin: 40px 0;
+}
+
+        .first{
+            display: flex;
+            justify-content: center;
+            max-width:70vw ;
+            font-size: 25px;
+            margin: auto;
+            color: aliceblue;
+            justify-content: center;
+            align-items: center;
+        }
+        .secImg {
+    position: relative;
+}
+
+.secImg img {
+    width: 605px;
+    height: auto;
+    position: relative;
+    z-index: 10;
+}
+
+.secImg video {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 555px;
+}
+.section.first>div{
+    display: flex;
+    flex-direction: column;
+    padding: 35px 0;
+}
+
+.section.first>div :nth-child(1){
+    font-size: 45px;
+    font-weight: bolder;
+}
+.first-text:nth-child(2){
+    font-size: 24px;
+}
+.secImg video {
+        top: 18%;
+        left: 12%;
+        width: 76%;
+        height: 60%;
+      }
+      .faq{
+        max-width: 800px;
+        margin: auto;
+        padding: 40px 20px;
+        color: aliceblue;
+      }
+      .faq h2 {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.faqbox {
+  background-color: #2d2d2d;
+  margin-bottom: 10px;
+  padding: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.faqbox:hover {
+  background-color: #444;
+}
+
+.faqbox .question {
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+}
+
+.faqbox .answer {
+  font-size: 16px;
+  margin-top: 10px;
+  display: none;
+}
+.footer{
+    color: antiquewhite;
+    max-width: 60vw;
+    margin: auto;
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    color: white;
+    font-size: larger;
+}
+ .questions{
+    padding: 30px 0;
+    color:white;
+    text-align: center;
+    font-size: 35px;
+    gap: 5px;
+    justify-content: space-between;
+}
+.footer-item a {
+  display: block;
+  color: #aaa;
+  margin-bottom: 10px; /* Adds space between links */
+  text-decoration: none;
+  font-size: 14px;
+}
+.footer a:hover{
+    color: white;
+    text-decoration: underline;
+
+}
+
+      @media screen and (max-width: 1300px) {
+    .hero> :nth-child(1) {
+        font-size: 32px;
+    }
+}
+    
+    </style>
+</head>
+
+<body>
+    <div class="main">
+            <header>
+        <div class="navbar">
+            <nav class="nav">
+                <span><img width="50"
+                        src="https://raw.githubusercontent.com/CodeWithHarry/Sigma-Web-Dev-Course/b0acb01fa88ae0753ef903b8fc45fadb5efe1c2b/Video%2053/assets/images/logo.svg"></span>
+                <div>
+                    <button class="btn">English</button>
+                    <button class="btn btn-red">Sign in</button>
+                </div>
+            </nav>
+            <div class="hero">
+                <h1>Enjoy big movies, hit series and more from ₹ 149.</h1>
+                <span>Join today. Cancel anytime.</span>
+                <span>Ready to watch? Enter your email to create or restart your membership.</span>
+                <div class="hero-buttons">
+                    <input type="email" placeholder="Email Address" />
+                    <button class="btn btn-red">Get Started &gt;</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="first">
+        <div>
+            <h1>Enjoy on your Tv</h1>
+            <span>Watch on smart TVs,PlayStation,Xbox,Chromecast,Apple TV,Blu-ray players and more.</span>
+        </div>
+        <div class="secImg">
+             <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png" alt="">
+            <video src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-in-0819.m4v"
+                autoplay loop muted></video>
+        </div>
+    </section>
+    <section class="first">
+        <div class="secImg">
+            <img src="https://res.cloudinary.com/assetscenter/image/upload/v1726490106/view/mobile.jpg"/>
+    </div>
+    <div>
+        <h1>Download your shows to watch offline.</h1>
+        <span>Save your favourite easily and always have something to watch.</span></div>
+    </div>
+    </section>
+    <section class="first">
+        <div>
+            <h1>Enjoy on your Tv</h1>
+            <span>Watch on smart TVs,PlayStation,Xbox,Chromecast,Apple TV,Blu-ray players and more.</span>
+        </div>
+        <div class="secImg">
+             <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png" alt="">
+            <video src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-devices-in.m4v" autoplay loop muted></video>
+        </div>
+    </section>
+     <section class="first">
+        <div class="secImg">
+            <img src="https://occ-0-2849-3646.1.nflxso.net/dnm/api/v6/19OhWN2dO19C9txTON9tvTFtefw/AAAABVr8nYuAg0xDpXDv0VI9HUoH7r2aGp4TKRCsKNQrMwxzTtr-NlwOHeS8bCI2oeZddmu3nMYr3j9MjYhHyjBASb1FaOGYZNYvPBCL.png?r=54d"/>
+    </div>
+    <div>
+        <h1>Create profiles for kids</h1>
+        <span>Send children on adventures with their favourite characters in a space made just for them—free with your membership.</span></div>
+    </div>
+    </section>
+    <section class="faq">
+        <h2>Frequently Asked Questions ?</h2>
+        <div class="faqbox">
+            <span>What is NetFlix?</span>
+            <div class="answer">Netflix is a streaming service that offers a wide variety of TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.</div>
+            </div>
+            <div class="faqbox">
+    <span class="question">How much does Netflix cost?</span>
+    <div class="answer">Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one low monthly fee. Plans start at ₹149 per month.</div>
+  </div>
+
+  <div class="faqbox">
+    <span class="question">Where can I watch?</span>
+    <div class="answer">Watch anywhere, anytime. Sign in with your Netflix account to watch instantly on the web at netflix.com from your personal computer or on any internet-connected device.</div>
+  </div>
+        </section>
+<footer>
+            <div class="questions">Questions? Call 000-800-919-1694 </div>
+            <div class="footer">
+                <div class="footer-item">
+                    <a href="#">Investor Relations</a>
+                    <a href="#">Jobs</a>
+                <a href="#">Ways to Watch</a>
+                <a href="#">Terms of Use</a>
+                </div>
+                <div class="footer-item"> 
+                <a href="#">Help Centre</a>
+                <a href="#">Account</a>
+                <a href="#">Speed Test</a>
+                <a href="#">Legal Notices</a>
+            </div>
+            <div class="footer-item">
+                <a href="#">Media Centre</a>
+                <a href="#">Privacy</a>
+                <a href="#">Cookie Preferences</a> 
+                <a href="#">Corporate</a>
+            </div>
+
+            <div class="footer-item">
+                <a href="#">Contact Us</a>
+                <a href="#">Speed Test</a> 
+                <a href="#">Legal Notices</a> 
+                <a href="#">Only on Netflix</a>
+            </div>
+                </div>
+                </footer>
+</body>
+<script>        
+  document.querySelectorAll('.faqbox').forEach(box => {
+    box.addEventListener('click', () => {
+      const answer = box.querySelector('.answer');
+      answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+    });
+  });
+</script>
+
+</html>
