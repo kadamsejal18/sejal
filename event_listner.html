@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event listner</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        .h1{
+            background-color: rgb(118, 96, 96);
+            text-transform: capitalize;
+            color: antiquewhite;
+            width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+cursor: pointer;
+        }
+        .btn{
+            background-color: aquamarine;
+            width: 100px;
+            padding: 5px;
+            text-align: center;
+            margin-top: 10x;
+        }
+        #fileinp{
+            display: none;
+        }
+        #main {
+  display: flex;
+  flex-wrap: wrap;         /* allows wrapping if too many cards */
+  gap: 20px;               /* space between cards */
+  margin-top: 20px;
+}
+
+          .forms {
+            background-color: pink;
+      margin-top: 20px;
+      padding: 10px;
+      border: 2px solid black;
+      width: fit-content;
+    }
+
+    .forms form input {
+        display: block;
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 200px;
+    }
+        .card{
+            background-color: rgb(171, 53, 245);
+            width: 250px;
+            border:2px solid black;
+            margin-top: 20px;
+      padding: 10px;
+        
+        }
+        .profile{
+            width: 50px;
+            height:50px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        .profile img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+            .card p{
+                font-size: 12px;
+                margin-top: 10px;
+            }
+            .card h5{
+                margin-top: 5px;
+
+            }
+            #abcd{
+                position: absolute;
+                background-color: rgb(247, 139, 120);
+      width: 60px;
+      height: 40px;      
+            }
+        
+    </style>
+</head>
+<body>
+    <h3 id="device">Select your Device</h3>
+    <select>
+<option>samsung</option>
+<option>oppo</option>
+<option>mi</option>
+    </select>
+
+
+    <input type="text" placeholder="Name">  
+           <h1>A</h1>
+           <div id="main">
+            <input id="fileinp" type="file"/>
+            <div class="btn">Upload File</div>
+           </div>
+    
+    <div class ="forms">
+    <form action="">
+        <input type="text"placeholder="profile pic">
+        <input type="text"placeholder="name">
+        <input type="text"placeholder="age">
+        <input type="text"placeholder="email">
+        <input type="submit">
+  </form></div>
+  <!--<div class="card">
+    <div class="profile">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8-Qwh2tAb74r86W_kGV14UI30XS4Zq4yl5A&s">
+    </div>
+    <h3>sejal kadam</h3>
+    <h5>student</h5>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit itaque rerum perferendis?</p>
+
+  </div>-->
+  <div id="abcd"></div>
+ <script src="event_listner.js"></script> 
+</body>
+</html>
