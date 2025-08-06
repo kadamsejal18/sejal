@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Star Rating Form</title>
+    <style>
+        :root {
+            --primary-color: #4a6bff;
+            --star-color: #ffc107;
+            --star-empty: #e0e0e0;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+            --transition: all 0.2s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .rating-form-container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-header {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .form-header h2 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .form-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .rating-section {
+            margin: 25px 0;
+        }
+
+        .rating-legend {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .star {
+            font-size: 2.5rem;
+            color: var(--star-empty);
+            cursor: pointer;
+            transition: var(--transition);
+            margin: 0 5px;
+            position: relative;
+        }
+
+        .star:hover,
+        .star.selected {
+            color: var(--star-color);
+            transform: scale(1.1);
+        }
+
+        .star.hovered {
+            color: var(--star-color);
+            opacity: 0.7;
+        }
+
+        .rating-feedback {
+            text-align: center;
+            margin-top: 15px;
+            font-style: italic;
+            color: var(--primary-color);
+            min-height: 24px;
+        }
+
+        .rating-value {
+            display: none;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(74, 107, 255, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 107, 255, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 480px) {
+            .star {
+                font-size: 2rem;
+                margin: 0 3px;
+            }
+            
+            .rating-form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="rating-form-container">
+        <div class="form-header">
+            <h2>Rate Your Experience</h2>
+            <p>Please take a moment to share your feedback with us</p>
+        </div>
+
+        <form id="ratingForm">
+            <div class="rating-section">
+                <div class="rating-legend">
+                    <span>Poor</span>
+                    <span>Excellent</span>
+                </div>
+
+                <div class="star-rating">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
+
+                <div class="rating-feedback" id="ratingFeedback"></div>
+                <input type="hidden" name="rating" id="ratingValue" class="rating-value">
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">Submit Rating</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stars = document.querySelectorAll('.star');
+            const ratingFeedback = document.getElementById('ratingFeedback');
+            const ratingValue = document.getElementById('ratingValue');
+            const form = document.getElementById('ratingForm');
+            
+            const feedbackMessages = {
+                1: "We're sorry to hear about your experience. We'll work harder.",
+                2: "We appreciate your feedback. We'll improve.",
+                3: "Thank you! We're glad you had an okay experience.",
+                4: "Great! We're happy to hear you enjoyed it!",
+                5: "Excellent! We're thrilled you loved it!"
+            };
+
+            // Handle star hover
+            stars.forEach(star => {
+                star.addEventListener('mouseover', function() {
+                    const currentRating = parseInt(this.getAttribute('data-value'));
+                    highlightStars(currentRating);
+                    ratingFeedback.textContent = getFeedbackMessage(currentRating);
+                });
+
+                star.addEventListener('mouseout', function() {
+                    const selectedRating = parseInt(ratingValue.value) || 0;
+                    if (selectedRating > 0) {
+                        highlightStars(selectedRating);
+                        ratingFeedback.textContent = getFeedbackMessage(selectedRating);
+                    } else {
+                        resetStars();
+                        ratingFeedback.textContent = '';
+                    }
+                });
+
+                star.addEventListener('click', function() {
+                    const selectedRating = parseInt(this.getAttribute('data-value'));
+                    ratingValue.value = selectedRating;
+                    
+                    // Remove hover effects from all stars
+                    stars.forEach(s => s.classList.remove('hovered'));
+                    
+                    // Show feedback message
+                    ratingFeedback.textContent = getFeedbackMessage(selectedRating);
+                });
+            });
+
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (!ratingValue.value) {
+                    alert('Please select a rating before submitting.');
+                    return;
+                }
+                
+                // Here you would typically send the data to your server
+                alert(`Thank you for your ${ratingValue.value}-star rating!`);
+                
+                // Reset form
+                resetStars();
+                ratingValue.value = '';
+                ratingFeedback.textContent = '';
+            });
+
+            function highlightStars(rating) {
+                stars.forEach(star => {
+                    const starValue = parseInt(star.getAttribute('data-value'));
+                    star.classList.remove('selected', 'hovered');
+                    
+                    if (starValue <= rating) {
+                        if (starValue === rating) {
+                            star.classList.add('hovered');
+                        } else {
+                            star.classList.add('selected');
+                        }
+                    }
+                });
+            }
+
+            function resetStars() {
+                stars.forEach(star => {
+                    star.classList.remove('selected', 'hovered');
+                });
+            }
+
+            function getFeedbackMessage(rating) {
+                return feedbackMessages[rating] || '';
+            }
+        });
+    </script>
+</body>
+</html>
+
