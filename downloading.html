@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Glassmorphism Download Button</title>
+  <style>
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #c2e9fb 0%, #a1c4fd 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+}
+.container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.glassloader {
+  width: 80px;
+  height: 80px;
+  border: 6px solid rgba(255, 255, 255, 0.2);
+  border-top: 6px solid rgb(255, 138, 208);
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: spin 1s linear infinite;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+.loading-text {
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .glass-button {
+      display: none;
+      padding: 15px 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .glass-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.main-content {
+  display: none;
+  padding: 40px;
+  text-align: center;
+  color: rgb(255, 138, 208);
+  font-size: 56px;
+}
+
+</style>
+  
+</head>
+<body>
+  <div class="container" id="loader">
+     <div class="glassloader"></div>
+     <div class="loading-text" id="loadingText">Loading... 0%</div>
+    <a href="yourfile.pdf" download class="glass-button">
+      ⬇ Download
+    </a>
+  </div>
+   <div class="main-content" id="main">
+    <h1>Welcome to My Website</h1>
+    <p>This is the main content after loading is complete.</p>
+  </div>
+  <script>
+
+let count = 0;
+    const loadingText = document.getElementById("loadingText");
+    const loader = document.getElementById("loader");
+    const main = document.getElementById("main");
+    const downloadBtn = document.getElementById("downloadBtn");
+
+    const interval = setInterval(() => {
+      count++;
+      loadingText.textContent = `Loading... ${count}%`;
+
+      if (count >= 100) {
+        clearInterval(interval);
+        loader.style.display = "none";
+        main.style.display = "block";
+        downloadBtn.style.display = "inline-block";
+      }
+    }, 40);
+  </script>
+</body>
+</html>
