@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Profile Viewer with Charts</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style src="github_profile_viewer.css"></style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 GitHub Profile Analytics</h1>
+            <p>Explore GitHub profiles with interactive charts and insights</p>
+        </div>
+
+        <div class="search-section">
+            <form id="search-form" class="search-form">
+                <input type="text" id="username-input" class="search-input" placeholder="Enter GitHub username (e.g., octocat)" />
+                <button type="submit" class="search-btn">🔍 Search Profile</button>
+            </form>
+            <div class="demo-users">
+                <button class="demo-btn" onclick="searchUser('octocat')">🐙 Octocat</button>
+                <button class="demo-btn" onclick="searchUser('torvalds')">🐧 Torvalds</button>
+                <button class="demo-btn" onclick="searchUser('gaearon')">⚛️ Dan Abramov</button>
+                <button class="demo-btn" onclick="searchUser('sindresorhus')">💎 Sindre</button>
+            </div>
+        </div>
+
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Fetching profile data and generating charts...</p>
+        </div>
+
+        <div id="error" class="error">
+            <p id="error-message">User not found. Please check the username and try again.</p>
+        </div>
+
+        <div id="profile-container" class="profile-container">
+            <div class="profile-header">
+                <img id="avatar" class="profile-avatar" src="" alt="Profile Avatar" />
+                <div class="profile-info">
+                    <h2 id="name"></h2>
+                    <div id="login" class="profile-username"></div>
+                    <div id="bio" class="profile-bio"></div>
+                    <div class="profile-meta">
+                        <div class="meta-item">
+                            <span>📍</span>
+                            <span id="location">Not specified</span>
+                        </div>
+                        <div class="meta-item">
+                            <span>🏢</span>
+                            <span id="company">Not specified</span>
+                        </div>
+                        <div class="meta-item">
+                            <span>📅</span>
+                            <span id="joined"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <span id="repos" class="stat-number">0</span>
+                        <div class="stat-label">Repositories</div>
+                    </div>
+                    <div class="stat-item">
+                        <span id="followers" class="stat-number">0</span>
+                        <div class="stat-label">Followers</div>
+                    </div>
+                    <div class="stat-item">
+                        <span id="following" class="stat-number">0</span>
+                        <div class="stat-label">Following</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="charts-section">
+                <div class="chart-container">
+                    <h3 class="chart-title">📈 Programming Languages</h3>
+                    <canvas id="languageChart" class="chart-canvas"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3 class="chart-title">⭐ Repository Stats</h3>
+                    <canvas id="repoStatsChart" class="chart-canvas"></canvas>
+                </div>
+            </div>
+
+            <div class="repos-section">
+                <div class="repos-header">
+                    <h3 class="repos-title">📚 Top Repositories</h3>
+                </div>
+                <div id="repositories" class="repos-grid"></div>
+            </div>
+        </div>
+    </div>
+<script src="github_profile_viewer.js"></script>
+    
+</body>
+</html>
