@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form_validation</title>
+    <style>
+    #hide{
+        display: none;
+        color:red;
+    }
+    </style>
+</head>
+<body><form>
+    <input required minlength ="3" id="name" type="text" placeholder="name">
+    <div id="hide">
+        <br>
+        <small>your name should be greater than 2 character</small>
+</div>
+<br><br>
+<input type="email" placeholder="email">
+<br><br>
+<input pattern="{0-9}" required ="password" placeholder="password">
+<br><br>
+<select><option>female</option>
+<option>male</option>
+<option>others</option>
+</select>
+<br><br>
+<input id="about_us" type="text" placeholder="Tell us about you.......">
+<br><br>
+<input type="submit" value="Submit">  
+<br><br>  
+
+</form><script src="form_validation.js"></script>
+</body>
+</html>
