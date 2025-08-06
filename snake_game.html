@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #222;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        canvas {
+            margin-top: 50px;
+            border: 2px solid white;
+            background-color: black;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
+    <button onclick="startGame()">Start Game</button>
+    <button id="restartbtn" onclick="restartGame()" style="display:none ;">Restart Game</button>
+<audio id="eat-sound" src="C:\Users\Admin\Downloads\Mingle – Squid Game Ringtone Download - MobCup.Com.Co.mp3" preload="auto"></audio>
+<audio id="end-sound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
+<div id="scoreDisplay" style="margin-top: 20px; font-size: 20px;"></div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ct = canvas.getContext('2d');
+        const gridSize = 10;
+        let snake = [{ x: 160, y: 160 }, { x: 150, y: 160 }, { x: 140, y: 160 }];
+        let food = { x: 420, y: 220 };
+        let direction = { x: gridSize, y: 0 };
+        let score = 0;
+        let gameinterval;
+        let isgameover = false;
+        let gamestarted = false;
+
+        function startGame() {
+            snake = [{ x: 160, y: 160 }, { x: 150, y: 160 }, { x: 140, y: 160 }];
+            food = { x: 420, y: 220 };
+            direction = { x: gridSize, y: 0 };
+            score = 0;
+            isgameover = false;
+            gamestarted = true;
+             document.getElementById("restartbtn").style.display = "none"; 
+            clearInterval(gameinterval);
+            gameinterval = setInterval(gameloop, 100);
+
+            drawgame();
+        }
+        function endGame() {
+            clearInterval(gameinterval);
+            isgameover = true;
+            document.getElementById("end-sound").play();
+            drawgame();
+
+            alert("Game Over! Your score: "+score);
+            document.getElementById("restartbtn").style.display = "inline-block";
+        }
+        //handle keyboard input
+        function changedirection(event) {
+            if (isgameover) return;
+
+            if (event.key === 'ArrowUp' && direction.y === 0) {
+                direction = { x: 0, y: -gridSize };
+            } else if (event.key === 'ArrowDown' && direction.y === 0) {
+                direction = { x: 0, y: gridSize };
+            } else if (event.key === 'ArrowLeft' && direction.x === 0) {
+                direction = { x: -gridSize, y: 0 };
+            } else if (event.key === 'ArrowRight' && direction.x === 0) {
+                direction = { x: gridSize, y: 0 };
+            }
+        }
+        // function to detect collision
+        function gameloop() {
+            const head = { x: snake[0].x + direction.x, y: snake[0].y + direction.y };
+
+            if (!isgameover && head.x === food.x && head.y === food.y) {
+                score++;
+                const eatSound = document.getElementById("eat-sound");
+        eatSound.currentTime = 2; // Reset to start
+        eatSound.play();
+                    // document.getElementById("eat-sound").play();
+
+
+                food = {
+                    x: Math.floor(Math.random() * (canvas.width / gridSize)) * gridSize,
+                    y: Math.floor(Math.random() * (canvas.height / gridSize)) * gridSize
+                };
+
+            } else {
+                snake.pop();
+
+            }
+            if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height || collision(head)) {
+                endGame();
+                return;
+            }
+            snake.unshift(head);
+            drawgame();
+        }
+        function collision(head) {
+            for (let i = 0; i < snake.length; i++) {
+                if (head.x === snake[i].x && head.y === snake[i].y) {
+                    return true;
+
+                }
+            }
+            return false;
+        }
+
+        function drawgame() {
+    ct.clearRect(0, 0, canvas.width, canvas.height);
+    snake.forEach((segment, index) => {
+        ct.fillStyle = index === 0 ? "lime" : "green";
+        ct.fillRect(segment.x, segment.y, gridSize, gridSize);
+    });
+    ct.fillStyle = "red";
+    ct.fillRect(food.x, food.y, gridSize, gridSize);
+    ct.fillStyle = "white";
+    ct.font = "20px Arial";
+    ct.fillText("Score: " + score, 10, 20);
+}
+
+
+               function restartGame() {
+    if (confirm("Are you sure you want to restart the game?")) {
+        startGame();
+    }
+}
+
+        document.addEventListener('keydown', changedirection);
+
+    </script>
+</body>
+
+</html>

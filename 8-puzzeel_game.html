@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>8 Puzzle Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+  }
+  
+
+    #board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      gap: 5px;
+      margin-bottom: 20px;
+      transition: border 0.3s ease;
+    
+    }
+
+    .tile {
+      width: 100px;
+      height: 100px;
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrK_RlgJ6Ij5ToBjWCtdPzTlN4jMHZEr6NAg&s');
+      background-size: 300px 300px;
+      background-repeat: no-repeat;
+      opacity: 0.8;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .tile:hover:not(.empty) {
+      transform: scale(1.05);
+      border: 2px solid yellow;
+    }
+
+    .empty {
+      cursor: default;
+    }
+
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    #status {
+      margin-top: 10px;
+      color: rgb(61, 12, 39);
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="board"></div>
+  <button id="shuffleBtn">Shuffle</button>
+  <button id="restartBtn">Restart</button>
+  <div id="status">Moves: 0 | Time: 0s</div>
+
+  <script>
+    const boardElement = document.getElementById("board");
+    const shuffleBtn = document.getElementById("shuffleBtn");
+    const restartBtn = document.getElementById("restartBtn");
+    const statusText = document.getElementById("status");
+
+    let board = [];
+    let moveCount = 0;
+    let moveHistory = [];
+    let time = 0;
+    let timer;
+
+    function initBoard() {
+      board = [1, 2, 3, 4, 5, 6, 7, 8, null];
+      moveCount = 0;
+      moveHistory = [];
+      time = 0;
+      clearInterval(timer);
+      startTimer();
+      boardElement.style.border = "none";
+      renderBoard();
+      updateStatus();
+    }
+
+    function renderBoard() {
+  boardElement.innerHTML = "";
+  board.forEach((tile, idx) => {
+    const tileDiv = document.createElement("div");
+
+    tileDiv.classList.add("tile");
+
+    if (tile === null) {
+      tileDiv.classList.add("empty");
+      tileDiv.style.backgroundImage = "none";
+    } else {
+      const row = Math.floor((tile - 1) / 3);
+      const col = (tile - 1) % 3;
+      tileDiv.style.backgroundPosition = `-${col * 100}px -${row * 100}px`;
+    }
+
+    tileDiv.addEventListener("click", () => moveTile(idx));
+    boardElement.appendChild(tileDiv);
+  });
+}
+         function getValidMoves(emptyIdx) {
+  const moves = [];
+  const row = Math.floor(emptyIdx / 3);
+  const col = emptyIdx % 3;
+
+  if (col > 0) moves.push(emptyIdx - 1);     // left
+  if (col < 2) moves.push(emptyIdx + 1);     // right
+  if (row > 0) moves.push(emptyIdx - 3);     // up
+  if (row < 2) moves.push(emptyIdx + 3);     // down
+
+  return moves;
+}
+
+function moveTile(idx) {
+  const emptyIdx = board.indexOf(null);
+  const validMoves = getValidMoves(emptyIdx);
+  if (validMoves.includes(idx)) {
+    moveHistory.push([...board]);
+    [board[idx], board[emptyIdx]] = [board[emptyIdx], board[idx]];
+    moveCount++;
+    renderBoard();
+    updateStatus();
+    if (checkWin()) {
+      clearInterval(timer);
+      boardElement.style.border = "5px solid lime";
+      statusText.textContent = `🎉 You won in ${moveCount} moves and ${time}s!`;
+    }
+  }
+}
+
+   
+
+    function isValidMove(from, to) {
+      const rowFrom = Math.floor(from / 3), colFrom = from % 3;
+      const rowTo = Math.floor(to / 3), colTo = to % 3;
+      return Math.abs(rowFrom - rowTo) + Math.abs(colFrom - colTo) === 1;
+    }
+
+    function shuffleBoard() {
+      let shuffled;
+      do {
+        shuffled = [1, 2, 3, 4, 5, 6, 7, 8, null].sort(() => Math.random() - 0.5);
+      } while (!isSolvable(shuffled) || checkWin(shuffled));
+      board = shuffled;
+      moveCount = 0;
+      moveHistory = [];
+      clearInterval(timer);
+      startTimer();
+      boardElement.style.border = "none";
+      renderBoard();
+      updateStatus();
+    }
+
+    function isSolvable(b) {
+      const arr = b.filter(n => n !== null);
+      let inv = 0;
+      for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+          if (arr[i] > arr[j]) inv++;
+        }
+      }
+      return inv % 2 === 0;
+    }
+
+    function checkWin() {
+      return board.join() === "1,2,3,4,5,6,7,8,";
+    }
+
+    function updateStatus() {
+      statusText.textContent = `Moves: ${moveCount} | Time: ${time}s`;
+    }
+
+    function startTimer() {
+      timer = setInterval(() => {
+        time++;
+        updateStatus();
+      }, 1000);
+    }
+
+    shuffleBtn.addEventListener("click", shuffleBoard);
+    restartBtn.addEventListener("click", initBoard);
+
+    initBoard();
+  </script>
+</body>
+</html>
